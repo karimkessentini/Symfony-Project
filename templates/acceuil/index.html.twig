@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gest.Biblio{% endblock %}
+{% block stylesheets %}
+    <!-- Morris Chart Styles-->
+    <link href="{{ asset('js/morris/morris-0.4.3.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ "js/Lightweight-Chart/cssCharts.css" }}">
+{% endblock %}
+{% block body %}
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="number">
+                        <h3>
+                            <h3>{{ nbAuteurs }}</h3>
+                            <small>Auteurs</small>
+                        </h3>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users fa-5x red"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="number">
+                        <h3>
+                            <h3>{{ nbLivres }}</h3>
+                            <small>Livres</small>
+                        </h3>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-book fa-5x blue"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="number">
+                        <h3>
+                            <h3>{{ nbEditeurs }}</h3>
+                            <small>Editeurs</small>
+                        </h3>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-pencil fa-5x green"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="board">
+                <div class="panel panel-primary">
+                    <div class="number">
+                        <h3>
+                            <h3>{{ nbCategories }}</h3>
+                            <small>Catégories</small>
+                        </h3>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-folder fa-5x yellow"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--stats-->
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Profit</h4>
+                    <div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Sales</h4>
+                    <div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Customers</h4>
+                    <div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>No. of Visits</h4>
+                    <div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Line Chart
+                </div>
+                <div class="panel-body">
+                    <div id="morris-line-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Bar Chart Example
+                </div>
+                <div class="panel-body">
+                    <div id="morris-bar-chart"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Area Chart
+                </div>
+                <div class="panel-body">
+                    <div id="morris-area-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Donut Chart Example
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Morris Chart Js -->
+    <script src="{{ asset('js/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ asset('js/morris/morris.js') }}"></script>
+
+    <script src="{{ asset('js/easypiechart.js') }}"></script>
+    <script src="{{ asset('js/easypiechart-data.js') }}"></script>
+
+    <script src="{{ asset('js/Lightweight-Chart/jquery.chart.js') }}"></script>
+
+    <!-- Chart Js -->
+    <script type="text/javascript" src="{{ asset('js/chart.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chartjs.js') }}"></script>
+
+{% endblock %}

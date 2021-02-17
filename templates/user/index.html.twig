@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonnés{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+    <h1>Abonnés</h1>
+    <h2>{{ user.username }}</h2>
+    <br>
+    <div>
+    </div>
+    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Emprunts</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i,a in abonnes %}
+            <tr>
+                <td>{{ i+1 }}</td>
+                <td>{{ a.username }}</td>
+                <td>{{ a.password }}</td>
+                <td>
+                    {% for emp in a.emprunts %}
+                        <span class="badge badge-success">{{ emp.titre }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="#"><span class="btn btn-default"><i class="fa fa-eye"></i></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas d'enregistrements trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('js/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+    </script>
+{% endblock %}

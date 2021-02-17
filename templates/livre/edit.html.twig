@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Livre{% endblock %}
+
+{% block body %}
+    {{ include('livre/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-2">
+                <a href="{{ path('livre_index') }}"><span class="btn btn-primary"><i class="fa fa-backward"> &nbsp; Retour </i></span></a>
+            </div>
+            {{ include('livre/_delete_form.html.twig') }}
+        </div>
+
+    </div>
+{% endblock %}
